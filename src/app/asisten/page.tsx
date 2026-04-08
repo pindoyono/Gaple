@@ -10,7 +10,7 @@ import { tilesEqual } from '@/engine/domino';
 
 type InputMode = 'manual' | 'photo';
 
-export default function AsitenPage() {
+export default function AsistenPage() {
   const [inputMode, setInputMode] = useState<InputMode>('manual');
   const [hand, setHand] = useState<Tile[]>([]);
   const [boardLeft, setBoardLeft] = useState<number>(-1);

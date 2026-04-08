@@ -133,6 +133,8 @@ export async function exportMatchAsCSV(matchId: string): Promise<string> {
   const match = await getMatch(matchId);
   const rounds = await getRoundsForMatch(matchId);
 
+  if (!match) return '';
+
   const header = 'Ronde,Waktu,Ujung Kiri,Ujung Kanan,Pemenang Tim,Poin Tim A,Poin Tim B,Catatan';
   const rows = rounds.map((r) =>
     [
@@ -140,7 +142,7 @@ export async function exportMatchAsCSV(matchId: string): Promise<string> {
       r.createdAt,
       r.boardLeft,
       r.boardRight,
-      r.winnerTeam !== undefined ? (r.winnerTeam === 0 ? match?.teams[0].join('+') : match?.teams[1].join('+')) : '',
+      r.winnerTeam !== undefined ? (r.winnerTeam === 0 ? match.teams[0].join('+') : match.teams[1].join('+')) : '',
       r.pointsTeamA ?? '',
       r.pointsTeamB ?? '',
       r.notes ?? '',
